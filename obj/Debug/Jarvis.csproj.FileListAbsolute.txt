@@ -1,0 +1,12 @@
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\bin\Debug\Jarvis.exe.config
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\bin\Debug\Jarvis.exe
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\bin\Debug\Jarvis.pdb
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\bin\Debug\Microsoft.Speech.dll
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\obj\Debug\Jarvis.csprojAssemblyReference.cache
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\obj\Debug\Jarvis.Jarvis.resources
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\obj\Debug\Jarvis.Properties.Resources.resources
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\obj\Debug\Jarvis.csproj.GenerateResource.cache
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\obj\Debug\Jarvis.csproj.CoreCompileInputs.cache
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\obj\Debug\Jarvis.csproj.CopyComplete
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\obj\Debug\Jarvis.exe
+C:\Users\d.soares\Documents\Pessoal\Jarvis\Jarvis\obj\Debug\Jarvis.pdb
