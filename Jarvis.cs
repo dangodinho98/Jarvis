@@ -23,31 +23,34 @@ namespace Jarvis
         private void Jarvis_Load(object sender, EventArgs e)
         {
             LoadSpeech();
+            Speaker.Speech("Arquivos carregados.");
         }
 
         private void LoadSpeech()
         {
             try
             {
-                engine = new SpeechRecognitionEngine();
-                engine.SetInputToDefaultAudioDevice();//microfone
+                engine = new SpeechRecognitionEngine(); //instância
+                engine.SetInputToDefaultAudioDevice(); //microfone
 
-                string[] words = { "Olá", "Oi" };
+                Choices commands = new Choices();
+                commands.Add(GrammarRules.WhatTimeIS.ToArray());
 
-                //carregar gramática
+                GrammarBuilder gbcommands = new GrammarBuilder();
+                gbcommands.Append(commands);
 
-                engine.LoadGrammar(new Grammar(new GrammarBuilder(new Choices(words))));
+                Grammar g_commands = new Grammar(gbcommands);
+                g_commands.Name = "sys";
 
+                engine.LoadGrammar(g_commands);//carregar gramática
 
-                engine.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs> (Engine_SpeechRecognized);
-                engine.AudioLevelUpdated += new EventHandler<AudioLevelUpdatedEventArgs> (Engine_AudioLevelUpdated);
+                engine.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(rec);
+                engine.AudioLevelUpdated += new EventHandler<AudioLevelUpdatedEventArgs>(Engine_AudioLevelUpdated);
+                engine.SpeechRecognitionRejected += new EventHandler<SpeechRecognitionRejectedEventArgs> (rej);
 
-               engine.RecognizeAsync(RecognizeMode.Multiple); //Inicia reconhecimento
+                engine.RecognizeAsync(RecognizeMode.Multiple); //Inicia o reconhecimento
 
                 Speaker.Speech("Estou carregando os arquivos");
-
-
-
             }
             catch (Exception ex)
             {
@@ -55,6 +58,35 @@ namespace Jarvis
                 throw;
             }
 
+        }       
+
+        //Quando algo é reconhecido
+        private void rec(object sender, SpeechRecognizedEventArgs e)
+        {
+            string speech = e.Result.Text; //string reconhecida
+            float conf = e.Result.Confidence;
+
+            if (conf > 0.35f)
+            {
+                this.label1.BackColor = Color.DarkGray;
+                this.label1.ForeColor = Color.Green;
+
+                switch (e.Result.Grammar.Name)
+                {
+                    case "sys":
+                        if (GrammarRules.WhatTimeIS.Any(x=> x == speech))
+                        {
+                            Runner.WhatTimeIs();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                this.label1.ForeColor = Color.Red;
+            }
         }
 
         private void Engine_AudioLevelUpdated(object sender, AudioLevelUpdatedEventArgs e)
@@ -63,10 +95,9 @@ namespace Jarvis
             this.progressBar1.Value = e.AudioLevel;
         }
 
-        //Quando algo nao é reconhecido
-        private void Engine_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        private void rej(object sender, SpeechRecognitionRejectedEventArgs e)
         {
-            //MessageBox.Show(e.Result.Text);
+            this.label1.ForeColor = Color.Red;
         }
     }
 }

@@ -16,11 +16,6 @@ namespace Jarvis
             if (sp.State == SynthesizerState.Speaking)
                 sp.SpeakAsyncCancelAll();
             sp.SpeakAsync(text);
-
-
         }
-
-
-
     }
 }
