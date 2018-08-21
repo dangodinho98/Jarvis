@@ -12,6 +12,9 @@ namespace Jarvis
         {
             Speaker.Speech(DateTime.Now.ToShortTimeString());
         }
-
+        public static void WhatDateIs()
+        {
+            Speaker.Speech(DateTime.Now.ToShortDateString());
+        }
     }
 }
